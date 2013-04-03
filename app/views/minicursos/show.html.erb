@@ -1,0 +1,30 @@
+<%- model_class = Minicurso -%>
+<div class="page-header">
+  <h3><%= @minicurso.title %></h3>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Data de início:</strong></dt>
+  <dd><%= @minicurso.date_ini.to_s %></dd>
+  <dt><strong>Data de término:</strong></dt>
+  <dd><%= @minicurso.date_fim.to_s %></dd>
+  <dt><strong>Horário:</strong></dt>
+  <dd><%= @minicurso.time_ini.to_s(:time) %> às <%= @minicurso.time_fim.to_s(:time) %></dd>
+  <dt><strong>Quantidade de vagas:</strong></dt>
+  <dd><%= @minicurso.vacancies %></dd>
+  <dt><strong>Ministrante:</strong></dt>
+  <dd><%= @minicurso.palestrante.name %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to 'Alterar',
+              edit_minicurso_path(@minicurso), :class => 'btn' %>
+  <%= link_to 'Remover',
+              minicurso_path(@minicurso),
+              :method => 'delete',
+              :data => { :confirm => 'Deseja realmente remover?' },
+              :class => 'btn btn-danger' %>
+  <%= link_to 'Voltar',
+              minicursos_path, :class => 'btn'  %>
+
+</div>

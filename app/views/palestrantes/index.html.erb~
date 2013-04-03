@@ -1,0 +1,36 @@
+<%- model_class = Palestrante -%>
+<div class="page-header">
+  <h3>#<%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Instituição</th>
+      <th>Currículo lattes</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @palestrantes.each do |palestrante| %>
+      <tr>
+        <td><%= palestrante.name %></td>
+        <td><%= palestrante.institution %></td>
+        <td><%= palestrante.lattes %></td>
+        <td>
+          <%= link_to 'Alterar',
+                      edit_palestrante_path(palestrante), :class => 'btn btn-mini' %>
+          <%= link_to 'Remover',
+                      palestrante_path(palestrante),
+                      :method => :delete,
+                      :data => { :confirm => 'Deseja realmente excluir?' },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_palestrante_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,90 @@
+class PalestrantesController < ApplicationController
+
+	before_filter :authenticate_user!,:except => [:index, :show] 
+  # GET /palestrantes
+  # GET /palestrantes.json
+  def index
+    @palestrantes = Palestrante.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @palestrantes }
+    end
+  end
+
+  # GET /palestrantes/1
+  # GET /palestrantes/1.json
+  def show
+    @palestrante = Palestrante.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @palestrante }
+    end
+  end
+
+  # GET /palestrantes/new
+  # GET /palestrantes/new.json
+  def new
+  	authorize! :new, @palestrante
+    @palestrante = Palestrante.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @palestrante }
+    end
+  end
+
+  # GET /palestrantes/1/edit
+  def edit
+  	authorize! :edit, @palestrante
+    @palestrante = Palestrante.find(params[:id])
+  end
+
+  # POST /palestrantes
+  # POST /palestrantes.json
+  def create
+  	authorize! :create, @palestrante
+    @palestrante = Palestrante.new(params[:palestrante])
+
+    respond_to do |format|
+      if @palestrante.save
+        format.html { redirect_to @palestrante, :flash => { :success => "Palestrante was successfully"} }
+        format.json { render json: @palestrante, status: :created, location: @palestrante }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @palestrante.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /palestrantes/1
+  # PUT /palestrantes/1.json
+  def update
+  	authorize! :update, @palestrante
+    @palestrante = Palestrante.find(params[:id])
+
+    respond_to do |format|
+      if @palestrante.update_attributes(params[:palestrante])
+        format.html { redirect_to @palestrante, notice: 'Palestrante was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @palestrante.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /palestrantes/1
+  # DELETE /palestrantes/1.json
+  def destroy
+  	authorize! :destroy, @palestrante
+    @palestrante = Palestrante.find(params[:id])
+    @palestrante.destroy
+
+    respond_to do |format|
+      format.html { redirect_to palestrantes_url }
+      format.json { head :no_content }
+    end
+  end
+end

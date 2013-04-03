@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  date_ini: 2013-04-01
+  date_fim: 2013-04-01
+  vacancies: 1
+  palestrante: 
+
+two:
+  title: MyString
+  date_ini: 2013-04-01
+  date_fim: 2013-04-01
+  vacancies: 1
+  palestrante: 

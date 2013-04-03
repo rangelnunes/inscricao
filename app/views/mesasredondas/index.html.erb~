@@ -1,0 +1,34 @@
+<%- model_class = Mesasredonda -%>
+<div class="page-header">
+  <h3>Mesas redondas</h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mesasredondas.each do |mesasredonda| %>
+      <tr>
+        <td><%= mesasredonda.title %></td>
+        <td><%= mesasredonda.data.to_s %></td>
+        <td>
+          <%= link_to 'Alterar',
+                      edit_mesasredonda_path(mesasredonda), :class => 'btn btn-mini' %>
+          <%= link_to 'Remover',
+                      mesasredonda_path(mesasredonda),
+                      :method => :delete,
+                      :data => { :confirm => 'Deseja realmente remover?' },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nova mesa redonda',
+            new_mesasredonda_path,
+            :class => 'btn btn-primary' %>

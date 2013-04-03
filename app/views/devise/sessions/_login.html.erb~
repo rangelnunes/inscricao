@@ -1,0 +1,9 @@
+<%= form_for(@user, :as => :user, :url => session_path(@user)) do |f| %>
+  <div><%= f.email_field :email, :class => "span2", :placeholder => "e-mail" %></div>
+
+  <div><%= f.password_field :password, :class => "span2", :placeholder => "senha" %></div>
+
+  <div><%= f.submit "Ok", :class => "btn" %></div>
+<% end %>
+
+

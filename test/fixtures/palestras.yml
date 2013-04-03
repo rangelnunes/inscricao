@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  data: 2013-04-01
+  hora: 2013-04-01 21:27:24
+  palestrante: 
+
+two:
+  title: MyString
+  data: 2013-04-01
+  hora: 2013-04-01 21:27:24
+  palestrante: 

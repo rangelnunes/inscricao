@@ -1,0 +1,19 @@
+Olá, <%= @user.name %>!<br />
+
+<h6><%= @user.email %></h6><br />
+
+<% if @user.minicurso %>
+	Minicurso escolhido: <%= @user.minicurso.title %><br />
+<% else %>
+	Nenhum minicurso foi escolhido!	
+<% end %>
+
+<p>
+	Situação: 
+	<% if @user.status == false %>
+		Aguardando confirmação de inscrição!
+	<% else %>
+		Inscrição confirmada!
+	<% end %>
+</p>
+
