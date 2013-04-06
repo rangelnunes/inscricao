@@ -1,0 +1,38 @@
+<%- model_class = Palestra -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data</th>
+      <th>Horário</th>
+      <th>Palestrante</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @palestras.each do |palestra| %>
+      <tr>
+        <td><%= palestra.title %></td>
+        <td><%= palestra.data.to_s %></td>
+        <td><%= palestra.hora.to_s(:time) %></td>
+        <td><%= palestra.palestrante.name %></td>
+        <td>
+          <%= link_to 'Alterar',
+                      edit_palestra_path(palestra), :class => 'btn btn-mini' %>
+          <%= link_to 'Remover',
+                      palestra_path(palestra),
+                      :method => :delete,
+                      :data => { :confirm => 'Deseja realmente excluir?' },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nova palestra',
+            new_palestra_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,42 @@
+<%- model_class = Minicurso -%>
+<div class="page-header">
+  <h3>Minicursos</h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data de início</th>
+      <th>Data de término</th>
+      <th>Horário</tr>
+      <th>Vagas</th>
+      <th>Instrutor</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @minicursos.each do |minicurso| %>
+      <tr>
+        <td><%= link_to minicurso.title, minicurso_path(minicurso) %></td>
+        <td><%= minicurso.date_ini.to_s %></td>
+        <td><%= minicurso.date_fim.to_s %></td>
+        <td><%= minicurso.time_ini.to_s(:time) %> às <%= minicurso.time_fim.to_s(:time) %></td>
+        <td><%= minicurso.vacancies %></td>
+        <td><%= minicurso.palestrante.name %></td>
+        <td>
+          <%= link_to 'Alterar',
+                      edit_minicurso_path(minicurso), :class => 'btn btn-mini' %>
+          <%= link_to 'Remover',
+                      minicurso_path(minicurso),
+                      :method => :delete,
+                      :data => { :confirm => 'Deseja realmente excluir?' },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Novo minicurso',
+            new_minicurso_path,
+            :class => 'btn btn-primary' %>

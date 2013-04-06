@@ -1,0 +1,32 @@
+<%= form_for @palestra, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label 'Título', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Data', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :data, :class => 'date_select', :order => [:day, :month, :year], :prompt => { :day => 'Selecione o dia', :month => 'Selecione o mês', :year => 'Selecione o ano'}, :use_month_names => ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Horário', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :hora, :class => 'time_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Palestrante', :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:palestra, :palestrante_id, Palestrante.all, :id, :name, {:prompt => "Escolha um palestrante"}) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit 'Cadastrar', :class => 'btn btn-primary' %>
+    <%= link_to 'Cancelar',
+                palestras_path, :class => 'btn' %>
+  </div>
+<% end %>

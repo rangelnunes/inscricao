@@ -1,0 +1,22 @@
+<%- model_class = Mesasredonda -%>
+<div class="page-header">
+  <h3><%= @mesasredonda.title %></h3>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Data:</strong></dt>
+  <dd><%= @mesasredonda.data.to_s %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to 'Alterar',
+              edit_mesasredonda_path(@mesasredonda), :class => 'btn' %>
+  <%= link_to 'Remover',
+              mesasredonda_path(@mesasredonda),
+              :method => 'delete',
+              :data => { :confirm => 'Deseja realmente excluir?' },
+              :class => 'btn btn-danger' %>
+  <%= link_to 'Voltar',
+              mesasredondas_path, :class => 'btn'  %>
+
+</div>

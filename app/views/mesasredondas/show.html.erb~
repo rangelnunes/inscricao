@@ -1,0 +1,25 @@
+<%- model_class = Mesasredonda -%>
+<div class="page-header">
+  <h3><%= @mesasredonda.title %></h3>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd></dd>
+  <dt><strong><%= model_class.human_attribute_name(:data) %>:</strong></dt>
+  <dd><%= @mesasredonda.data %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:palestrante_id) %>:</strong></dt>
+  <dd><%= @mesasredonda.palestrante_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              mesasredondas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_mesasredonda_path(@mesasredonda), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              mesasredonda_path(@mesasredonda),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,50 @@
+<%= form_for @minicurso, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label 'Título', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Data de início', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date_ini, :class => 'date_select', :order => [:day, :month, :year], :prompt => { :day => 'Selecione o dia', :month => 'Selecione o mês', :year => 'Selecione o ano'}, :use_month_names => ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Data de término', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date_fim, :class => 'date_select', :order => [:day, :month, :year], :prompt => { :day => 'Selecione o dia', :month => 'Selecione o mês', :year => 'Selecione o ano'}, :use_month_names => ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Horário de início', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :time_ini, :class => 'time_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Horário de término', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :time_ini, :class => 'time_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Quantidade de vagas', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :vacancies, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Ministrante', :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:minicurso, :palestrante_id, Palestrante.all, :id, :name, {:prompt => "Escolha um ministrante"}) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit 'Cadastrar', :class => 'btn btn-primary' %>
+    <%= link_to 'Cancelar',
+                minicursos_path, :class => 'btn' %>
+  </div>
+<% end %>

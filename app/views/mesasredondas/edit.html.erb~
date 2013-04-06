@@ -1,0 +1,5 @@
+<%- model_class = Mesasredonda -%>
+<div class="page-header">
+  <h1>Alteração mesa redonda</h1>
+</div>
+<%= render :partial => 'form' %>

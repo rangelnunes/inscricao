@@ -1,0 +1,70 @@
+<h2>Programação</h2>
+
+<hr>
+
+<h4>Palestras</h4>
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Palestrante</th>
+  </tr>
+
+<% @palestras.each do |palestra| %>
+  <tr>
+    <td><%= palestra.title %></td>
+    <td><%= palestra.data.to_s %></td>
+    <td><%= palestra.hora.to_s(:time) %></td>
+    <td><%= palestra.palestrante.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<hr>
+
+<h4>Mesa Redonda</h4>
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th>Data</th>
+  </tr>
+
+<% @mesasredondas.each do |m| %>
+  <tr>
+    <td><%= m.title %></td>
+    <td><%= m.data.to_s %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<hr>
+
+<h4>Minicursos</h4>
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th>Período</th>
+    <th>Horário</th>
+    <th>Vagas</th>            
+    <th>Ministrante</th>        
+  </tr>
+
+<% @minicursos.each do |minicurso| %>
+  <tr>
+    <td><%= minicurso.title %></td>
+    <td><%= minicurso.date_ini.to_s %> a <%= minicurso.date_fim.to_s %></td>    
+    <td><%= minicurso.time_ini.to_s(:time) %> a <%= minicurso.time_fim.to_s(:time) %></td>    
+    <td><%= minicurso.palestrante.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

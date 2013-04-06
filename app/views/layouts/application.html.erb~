@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>I Semana de Meio Ambiente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><%= link_to 'Home', root_path %></li>
+		            <li class="dropdown">
+		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
+		              <ul class="dropdown-menu">
+			            	<% if can? :create, @palestrante  %>
+				            	<li><%= link_to 'Palestrante', new_palestrante_path %></li>
+										<% end %>
+			            	<% if can? :create, @palestra  %>
+			 	              <li><%= link_to 'Palestras', new_palestra_path %></li>
+										<% end %>
+			            	<% if can? :create, @minicurso  %>
+				            	<li><%= link_to 'Minicursos', new_minicurso_path %></li>
+				            <% end %>	
+			            	<% if can? :create, @mesasredonda  %>
+					            <li><%= link_to 'Mesas redondas', new_mesasredonda_path %></li>
+										<% end %>
+		 	            </ul>  
+		            </li>            	
+                <% end %>
+              <li class="dropdown">
+              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Programação<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+	              	<li><%= link_to 'Pogramação completa', pages_programacao_path %></li>
+   	              <li><%= link_to 'Palestras', palestras_path %></li>
+		              <li><%= link_to 'Minicursos', minicursos_path %></li>
+		              <li><%= link_to 'Mesas redondas', mesasredondas_path %></li>
+   	            </ul>  
+              </li>
+              <li><%= link_to 'Palestrantes', palestrantes_path%></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inscrição <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
+										<li><%= link_to 'Alterar dados', edit_user_registration_path %></li>		
+									<% else %>	
+	                  <li><%= link_to 'Inscreva-se', new_user_registration_path %></li>
+	                <% end %>  
+                  <li class="divider"></li>
+                  <% if user_signed_in? %>
+                  	<li><%= link_to 'Consultar inscrição', pages_status_path %></li>
+                  <% else %>	
+                  	<li><%= link_to 'Consultar inscrição', new_user_session_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li>
+              	<% if user_signed_in? %>
+                	<%= link_to('Sair', destroy_user_session_path, :method => 'delete') %>
+                <% end %>
+							</li>
+            </ul>
+            <form class="navbar-form pull-right" action = "/users/sign_in" method = "post">
+              <input id="user_email" name="user[email]" class="span2" type="text" placeholder="Email">
+              <input id="user_password" name="user[password]" class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Ok</button>
+              
+            </form>
+            <%#= render "devise/sessions/login" %>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+
+				<% if flash[:notice]%>				
+				<div class="alert alert-block">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h6>				
+							<% flash.each do |name, msg| %>
+								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+							<% end %>
+						</h6>					
+				</div>
+							
+				<% end %>
+				<% if flash[:alert]%>
+					
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h6>				
+							<% flash.each do |name, msg| %>
+								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+							<% end %>		
+						</h6>					
+				</div>
+							
+				<% end %>
+				
+				<% if flash[:success]%>
+					
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4>				
+						<p>
+							<% flash.each do |name, msg| %>
+								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+							<% end %>
+						</p>					
+						</h4>					
+				</div>
+							
+				<% end %>
+				<%= yield %>
+      </div>
+      <hr>
+
+			<div id="footer">
+		    <div class="container-fluid">
+		      <p class="muted credit">Powered by <a href="http://martinbean.co.uk">LEDS</a>.</p>
+		    </div>
+		  </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
