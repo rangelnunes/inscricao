@@ -1,35 +1,43 @@
-<h3>#Inscrição</h3>
-
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+	<fieldset>
+		<legend>Inscrição</legend>
+		<div>  
+			<%= f.text_field :name, :placeholder => "Nome completo" %>
+		</div>
 
-  <div><%= f.label 'Nome completo' %><br />
-  <%= f.text_field :name %></div>
+		<div>
+			<%= f.text_field :cpf, :placeholder => "CPF" %>
+			<span class="help-inline">(Somente números. Ex.: 99999999999)</span>
+		</div>
+		  
+		<div>
+			<%= f.text_field :institution, :placeholder => "Instituição" %>
+		</div>
+		
+		<div>
+			<%= f.email_field :email, :placeholder => "E-mail" %>
+			<span class="help-inline">(Ex.: exemplo@email.com)</span>
+		</div>
 
-  <div><%= f.label 'CPF' %><br />
-  <%= f.text_field :cpf %></div>
-    
-  <div><%= f.label 'Instituição' %><br />
-  <%= f.text_field :institution %></div>
-  
-  <div><%= f.label 'e-mail' %><br />
-  <%= f.email_field :email %></div>
+		<div>
+			<%= f.password_field :password, :placeholder => "Senha" %>
+			<span class="help-inline">(A senha deve ter no mínimo 8 caracteres)</span>
+		</div>
 
-  <div><%= f.label :senha %><br />
-  <%= f.password_field :password %></div>
+		<div>
+			<%= f.password_field :password_confirmation, :placeholder => "Confirme a senha" %>
+			<span class="help-inline">(Deve ser igual a senha)</span>
+		</div>
+		<div><%= f.label 'Escolha um minicurso:' %><br />
+			<%for m in Minicurso.all%>
+				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
+				<%= m.title %> (n vagas restante(s))
+				</p>
+			<%end%>
+				<p><%=radio_button_tag "user[minicurso_id]", 0 %> Nenhum
+		</div>
 
-  <div><%= f.label 'Confirme a senha' %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label 'Escolha um minicurso:' %><br />
-		<%for m in Minicurso.all%>
-			<p><%=radio_button_tag "user[minicurso_id]", m.id %>
-			<%= m.title %> (n vagas restante(s))
-			</p>
-		<%end%>
-  </div>
-
-  <div><%= f.submit "Cadastrar" %></div>
+		<div><%= f.submit "Cadastrar" %></div>
+	</fieldset>
 <% end %>
-
-<%#= render "devise/shared/links" %>
