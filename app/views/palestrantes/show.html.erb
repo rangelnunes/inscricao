@@ -9,15 +9,16 @@
   <dt><strong>currículo lattes:</strong></dt>
   <dd><%= @palestrante.lattes %></dd>
 </dl>
-
-<div class="form-actions">
-  <%= link_to 'Alterar',
-              edit_palestrante_path(@palestrante), :class => 'btn' %>
-  <%= link_to 'Remover',
-              palestrante_path(@palestrante),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-  <%= link_to 'Voltar',
-              palestrantes_path, :class => 'btn'  %>
-</div>
+<% if can? :create, @palestrante %>
+	<div class="form-actions">
+		<%= link_to 'Alterar',
+		            edit_palestrante_path(@palestrante), :class => 'btn' %>
+		<%= link_to 'Remover',
+		            palestrante_path(@palestrante),
+		            :method => 'delete',
+		            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		            :class => 'btn btn-danger' %>
+		<%= link_to 'Voltar',
+		            palestrantes_path, :class => 'btn'  %>
+	</div>
+<% end %>

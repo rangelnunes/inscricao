@@ -1,4 +1,15 @@
 <%= form_for @minicurso, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @minicurso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@minicurso.errors.count, "erro") %> impediu que esse minicurso fosse cadastrado:</h2>
+
+      <ul>
+      <% @minicurso.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="control-group">
     <%= f.label 'Título', :class => 'control-label' %>
     <div class="controls">
@@ -26,7 +37,7 @@
   <div class="control-group">
     <%= f.label 'Horário de término', :class => 'control-label' %>
     <div class="controls">
-      <%= f.time_select :time_ini, :class => 'time_select' %>
+      <%= f.time_select :time_fim, :class => 'time_select' %>
     </div>
   </div>
   <div class="control-group">

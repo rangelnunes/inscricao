@@ -1,6 +1,4 @@
 class PalestrasController < ApplicationController
-
-	before_filter :authenticate_user!,:except => [:index, :show] 
   # GET /palestras
   # GET /palestras.json
   def index

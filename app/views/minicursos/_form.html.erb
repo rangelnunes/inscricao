@@ -1,4 +1,21 @@
 <%= form_for @minicurso, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @minicurso.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @minicurso.errors.count > 1 %>
+	      	<%= pluralize(@minicurso.errors.count, "erro") %> impediram que esse minicurso fosse cadastrado:
+	      <% else %>	
+		      <%= pluralize(@minicurso.errors.count, "erro") %> impediu que esse minicurso fosse cadastrado:
+	      <% end %>
+    	</h2>
+
+      <ul>
+      <% @minicurso.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="control-group">
     <%= f.label 'Título', :class => 'control-label' %>
     <div class="controls">

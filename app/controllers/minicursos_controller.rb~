@@ -1,6 +1,4 @@
 class MinicursosController < ApplicationController
-
-	before_filter :authenticate_user!,:except => [:index, :show] 
   # GET /minicursos
   # GET /minicursos.json
   def index

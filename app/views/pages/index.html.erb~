@@ -1,4 +1,4 @@
-<%= image_tag "meioambiente.jpg", :class => "img-polaroid", :size => "600x100" %>
+
 <h3>Bem vindo!</h3>
 <p>A Semana de Meio Ambiente visa oportunizar discussões profundas com foco nas questões ambientais, perfil e perspectivas do técnico em meio ambiente e projetos ambientais do IFPI campus Floriano.</p>
 	<table class="table table-bordered">
@@ -46,7 +46,6 @@ R$ 10,00 para alunos</td>
 	</table>
 
 <div class="row-fluid">
-
   <div class="span4">
   	<p>
   		<%= link_to 'Programação completa', pages_programacao_path, :class => 'btn btn-primary btn-large' %>

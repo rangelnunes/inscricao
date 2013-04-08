@@ -25,23 +25,17 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><%= link_to 'Home', root_path %></li>
-		            <li class="dropdown">
-		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
-		              <ul class="dropdown-menu">
-			            	<% if can? :create, @palestrante  %>
-				            	<li><%= link_to 'Palestrante', new_palestrante_path %></li>
-										<% end %>
-			            	<% if can? :create, @palestra  %>
+							<% if can? :create, [@palestrante,@palestra,@minicurso,@mesasredonda]  %>
+								<li class="dropdown">
+			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
+			            <ul class="dropdown-menu">
+					          	<li><%= link_to 'Palestrante', new_palestrante_path %></li>
 			 	              <li><%= link_to 'Palestras', new_palestra_path %></li>
-										<% end %>
-			            	<% if can? :create, @minicurso  %>
-				            	<li><%= link_to 'Minicursos', new_minicurso_path %></li>
-				            <% end %>	
-			            	<% if can? :create, @mesasredonda  %>
-					            <li><%= link_to 'Mesas redondas', new_mesasredonda_path %></li>
-										<% end %>
+					          	<li><%= link_to 'Minicursos', new_minicurso_path %></li>
+						          <li><%= link_to 'Mesas redondas', new_mesasredonda_path %></li>
 		 	            </ul>  
-		            </li>            	
+			          </li>            	
+							<% end %>
               <li class="dropdown">
               	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Programação<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -118,6 +112,21 @@
 				<% if flash[:success]%>
 					
 				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4>				
+						<p>
+							<% flash.each do |name, msg| %>
+								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+							<% end %>
+						</p>					
+						</h4>					
+				</div>
+							
+				<% end %>
+
+				<% if flash[:error]%>
+					
+				<div class="alert alert-error">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<h4>				
 						<p>

@@ -1,5 +1,4 @@
 class MesasredondasController < ApplicationController
-	before_filter :authenticate_user!,:except => [:index, :show] 
   # GET /mesasredondas
   # GET /mesasredondas.json
   def index

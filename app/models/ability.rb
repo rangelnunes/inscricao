@@ -10,9 +10,7 @@ class Ability
       can :read, [Palestra, Palestrante]
       can [:edit, :update], Minicurso
     elsif user.role? :Member
-       can :read, :all
-       can :create, [Palestra, Palestrante]
-       can [:edit, :update], Minicurso
+       can :read, [Palestra, Palestrante, Minicurso, Mesasredonda]
     end
   end
 end

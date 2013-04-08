@@ -10,21 +10,23 @@
   <dd><%= @minicurso.date_fim.to_s %></dd>
   <dt><strong>Horário:</strong></dt>
   <dd><%= @minicurso.time_ini.to_s(:time) %> às <%= @minicurso.time_fim.to_s(:time) %></dd>
-  <dt><strong>Quantidade de vagas:</strong></dt>
+  <dt><strong>Vagas:</strong></dt>
   <dd><%= @minicurso.vacancies %></dd>
   <dt><strong>Ministrante:</strong></dt>
   <dd><%= @minicurso.palestrante.name %></dd>
 </dl>
-
 <div class="form-actions">
-  <%= link_to 'Alterar',
-              edit_minicurso_path(@minicurso), :class => 'btn' %>
-  <%= link_to 'Remover',
-              minicurso_path(@minicurso),
-              :method => 'delete',
-              :data => { :confirm => 'Deseja realmente remover?' },
-              :class => 'btn btn-danger' %>
-  <%= link_to 'Voltar',
-              minicursos_path, :class => 'btn'  %>
+		<% if can? :manage, @minicurso %>
+			<%= link_to 'Alterar',
+				          edit_minicurso_path(@minicurso), :class => 'btn' %>
+			<%= link_to 'Remover',
+				          minicurso_path(@minicurso),
+				          :method => 'delete',
+				          :data => { :confirm => 'Deseja realmente remover?' },
+				          :class => 'btn btn-danger' %>
+		<% end %>
+		<%= link_to 'Voltar',
+		            minicursos_path, :class => 'btn'  %>
 
-</div>
+	</div>
+

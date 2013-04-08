@@ -1,32 +1,42 @@
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label "Nome completo", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label "CPF", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cpf, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label "Instituição", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :institution, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label "Minicurso", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :minicurso_id, :class => 'number_field' %>
-    </div>
-  </div>
+	<fieldset>
+		<legend>Inscrição</legend>
+		<div>  
+			<%= f.text_field :name, :placeholder => "Nome completo" %>
+		</div>
 
-  <div class="form-actions">
-    <%= f.submit 'Cadastrar', :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
-  </div>
+		<div>
+			<%= f.text_field :cpf, :placeholder => "CPF" %>
+			<span class="help-inline">(Somente números. Ex.: 99999999999)</span>
+		</div>
+		  
+		<div>
+			<%= f.text_field :institution, :placeholder => "Instituição" %>
+		</div>
+		
+		<div>
+			<%= f.email_field :email, :placeholder => "E-mail" %>
+			<span class="help-inline">(Ex.: exemplo@email.com)</span>
+		</div>
+
+		<div>
+			<%= f.password_field :password, :placeholder => "Senha" %>
+			<span class="help-inline">(A senha deve ter no mínimo 8 caracteres)</span>
+		</div>
+
+		<div>
+			<%= f.password_field :password_confirmation, :placeholder => "Confirme a senha" %>
+			<span class="help-inline">(Deve ser igual a senha)</span>
+		</div>
+		<div><%= f.label 'Escolha um minicurso:' %><br />
+			<%for m in Minicurso.all%>
+				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
+				<%= m.title %> (n vagas restante(s))
+				</p>
+			<%end%>
+				<p><%=radio_button_tag "user[minicurso_id]", 0 %> Nenhum
+		</div>
+
+		<div><%= f.submit "Cadastrar", :class => "btn" %></div>
+	</fieldset>
 <% end %>

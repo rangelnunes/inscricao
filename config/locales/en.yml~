@@ -10,7 +10,7 @@ en:
         date_fim: "Data de término"
         time_ini: "Horário de início"
         time_fim: "Horário de término"
-        vacancies: "Quantidade de vagas"
+        
     models: 
       minicurso: "minicurso"
   hello: "Hello world"

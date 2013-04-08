@@ -8,29 +8,34 @@
       <th>Nome</th>
       <th>Instituição</th>
       <th>Currículo lattes</th>
-      <th>Ações</th>
+      <% if can? :create, @palestrante %>
+	      <th>Ações</th>
+  		<% end %>
     </tr>
   </thead>
   <tbody>
     <% @palestrantes.each do |palestrante| %>
       <tr>
-        <td><%= palestrante.name %></td>
+        <td><%= link_to palestrante.name, palestrante_path(palestrante) %></td>
         <td><%= palestrante.institution %></td>
         <td><%= palestrante.lattes %></td>
-        <td>
-          <%= link_to 'Alterar',
-                      edit_palestrante_path(palestrante), :class => 'btn btn-mini' %>
-          <%= link_to 'Remover',
-                      palestrante_path(palestrante),
-                      :method => :delete,
-                      :data => { :confirm => 'Deseja realmente excluir?' },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+				<% if can? :create, @palestrante %>
+		      <td>
+		        <%= link_to 'Alterar',
+		                    edit_palestrante_path(palestrante), :class => 'btn btn-mini' %>
+		        <%= link_to 'Remover',
+		                    palestrante_path(palestrante),
+		                    :method => :delete,
+		                    :data => { :confirm => 'Deseja realmente excluir?' },
+		                    :class => 'btn btn-mini btn-danger' %>
+		      </td>
+				<% end %>	
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Novo palestrante',
-            new_palestrante_path,
-            :class => 'btn btn-primary' %>
+<% if can? :create, @palestrante %>
+	<%= link_to 'Novo palestrante',
+		          new_palestrante_path,
+		          :class => 'btn btn-primary' %>
+<% end %>
