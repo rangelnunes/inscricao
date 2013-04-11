@@ -1,4 +1,22 @@
 <%= form_for @mesasredonda, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @mesasredonda.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @mesasredonda.errors.count > 1 %>
+	      	<%= pluralize(@mesasredonda.errors.count, "erro") %> impediram que esta mesa redonda fosse cadastrada:
+	      <% else %>	
+		      <%= pluralize(@mesasredonda.errors.count, "erro") %> impediu que esta mesa redonda fosse cadastrada:
+	      <% end %>
+    	</h2>
+
+      <ul>
+      <% @mesasredonda.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="control-group">
     <%= f.label 'Título', :class => 'control-label' %>
     <div class="controls">

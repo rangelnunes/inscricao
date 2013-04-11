@@ -11,6 +11,7 @@ gem 'devise'
 gem 'cancan'
 gem 'heroku'
 gem 'thin'
+gem 'recaptcha', :require => 'recaptcha/rails'
 
 group :development, :test do
   gem 'sqlite3'

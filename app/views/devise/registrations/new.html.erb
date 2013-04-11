@@ -29,15 +29,22 @@
 			<%= f.password_field :password_confirmation, :placeholder => "Confirme a senha" %>
 			<span class="help-inline">(Deve ser igual a senha)</span>
 		</div>
+		<div>
+			<%= f.select :tipo, options_for_select([["Selecione um tipo", ""], "Estudante", "Profissional"]) %>
+		</div>
 		<div><%= f.label 'Escolha um minicurso:' %><br />
 			<%for m in Minicurso.all%>
 				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
 				<%= m.title %> (n vagas restante(s))
 				</p>
 			<%end%>
-				<p><%=radio_button_tag "user[minicurso_id]", 0 %> Nenhum
+				<p><%=radio_button_tag "user[minicurso_id]", 0, :checked => true %> Nenhum
 		</div>
-
-		<div><%= f.submit "Cadastrar", :class => "btn" %></div>
+		<div>
+			<%= recaptcha_tags %>
+		</div>
+		<div>
+			<%= f.submit "Cadastrar", :class => "btn" %>
+		</div>
 	</fieldset>
 <% end %>

@@ -1,0 +1,5 @@
+class DropTypeColumnToUser < ActiveRecord::Migration
+	def change
+    drop_column :users, :type
+  end
+end

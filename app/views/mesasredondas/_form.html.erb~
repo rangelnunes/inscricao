@@ -1,4 +1,22 @@
 <%= form_for @mesasredonda, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @mesasredonda.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @mesasredonda.errors.count > 1 %>
+	      	<%= pluralize(@mesasredonda.errors.count, "erro") %> impediram que esta mesa redonda fosse cadastrada:
+	      <% else %>	
+		      <%= pluralize(@mesasredonda.errors.count, "erro") %> impediu que esta mesa redonda fosse cadastrada:
+	      <% end %>
+    	</h2>
+
+      <ul>
+      <% @mesasredonda.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="control-group">
     <%= f.label 'Título', :class => 'control-label' %>
     <div class="controls">
@@ -8,10 +26,17 @@
   <div class="control-group">
     <%= f.label 'Data', :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :data, :class => 'date_select' %>
+	    <%= f.date_select :data, :class => 'date_select', :order => [:day, :month, :year], :prompt => { :day => 'Selecione o dia', :month => 'Selecione o mês', :year => 'Selecione o ano'}, :use_month_names => ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] %>
     </div>
   </div>
 
+  <div class="control-group">
+    <%= f.label 'Ministrante', :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:minicurso, :palestrante_id, Palestrante.all, :id, :name, {:prompt => "Escolha um ministrante"}) %>
+    </div>
+  </div>
+  
   <div class="form-actions">
     <%= f.submit 'Cadastrar', :class => 'btn btn-primary' %>
     <%= link_to 'Cancelar',

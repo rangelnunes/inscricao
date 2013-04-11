@@ -10,7 +10,20 @@ en:
         date_fim: "Data de término"
         time_ini: "Horário de início"
         time_fim: "Horário de término"
-        
+        vacancies: "Quantidade de vagas"
+      mesasredonda: 
+        title: "Título"
+      palestra: 
+        title: "Título"
+      palestrante: 
+        name: "Nome"
+        institution: "Instituição"
+      user: 
+        name: "Nome"
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+        institution: "Instituição"
     models: 
       minicurso: "minicurso"
   hello: "Hello world"

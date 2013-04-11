@@ -49,7 +49,7 @@ class PalestrantesController < ApplicationController
 
     respond_to do |format|
       if @palestrante.save
-        format.html { redirect_to @palestrante, :flash => { :success => "Palestrante was successfully"} }
+        format.html { redirect_to @palestrante, :flash => { :notice => "Palestrante cadastrado com sucesso!"} }
         format.json { render json: @palestrante, status: :created, location: @palestrante }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class PalestrantesController < ApplicationController
 
     respond_to do |format|
       if @palestrante.update_attributes(params[:palestrante])
-        format.html { redirect_to @palestrante, notice: 'Palestrante was successfully updated.' }
+        format.html { redirect_to @palestrante, notice: 'Palestrante alterado com sucesso!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

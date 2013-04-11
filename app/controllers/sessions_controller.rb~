@@ -2,11 +2,10 @@ class SessionsController < Devise::SessionsController
 
 	before_filter :load_resources
 	
-	def create
-    session["#{resource_name}_return_to"] = users_path
-    super
+	def after_inactive_sign_up_path_for(resource)
+    "http://www.google.com.br"
   end
-	
+		
 	private 
 
 	def load_resources

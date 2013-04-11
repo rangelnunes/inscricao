@@ -1,7 +1,6 @@
 class SessionsController < Devise::SessionsController
 
 	before_filter :load_resources
-	
 		
 	private 
 

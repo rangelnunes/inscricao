@@ -1,3 +1,5 @@
+<div class="row-fluid">
+<%= image_tag "meioambiente.jpg", :class => "imgpos", :size => "600x100" %>
 
 <h3>Bem vindo!</h3>
 <p>A Semana de Meio Ambiente visa oportunizar discussões profundas com foco nas questões ambientais, perfil e perspectivas do técnico em meio ambiente e projetos ambientais do IFPI campus Floriano.</p>
@@ -45,21 +47,18 @@ R$ 10,00 para alunos</td>
 		</tbody>
 	</table>
 
-<div class="row-fluid">
-  <div class="span4">
-  	<p>
-  		<%= link_to 'Programação completa', pages_programacao_path, :class => 'btn btn-primary btn-large' %>
-  	</p>
-  </div>
-  <div class="span8">
-  	<p>
-	    <% if user_signed_in? %>
-      	<%= link_to 'Consultar inscrição', pages_status_path, :class => 'btn btn-primary btn-large' %>
-      <% else %>	
-	  		<%= link_to 'Inscreva-se já', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
-	  	<% end %>	
-  	</p>
-	</div>
+  <ul class="inline">
+  		<li>
+  			<%= link_to 'Programação completa', pages_programacao_path, :class => 'btn btn-primary btn-large' %>
+	  	</li>
+      <li>
+		    <% if user_signed_in? %>
+		    	<%= link_to 'Consultar inscrição', pages_status_path, :class => 'btn btn-primary btn-large' %>
+		    <% else %>	
+					<%= link_to 'Inscreva-se já', new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+				<% end %>	
+	  	</li>
+  </ul>
 
 </div>
 

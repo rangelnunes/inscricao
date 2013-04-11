@@ -8,6 +8,10 @@ class PagesController < ApplicationController
   def programacao
   end
 
+  def cadastro
+  	@user = User.find(current_user.id)
+  end
+  
   def status
   	@user = User.find(current_user.id)
   end

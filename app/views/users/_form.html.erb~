@@ -34,7 +34,7 @@
 				<%= m.title %> (n vagas restante(s))
 				</p>
 			<%end%>
-				<p><%=radio_button_tag "user[minicurso_id]", 0 %> Nenhum
+				<p><%=radio_button_tag "user[minicurso_id]", 0, :checked => true %> Nenhum
 		</div>
 
 		<div><%= f.submit "Cadastrar", :class => "btn" %></div>

@@ -8,6 +8,7 @@
     <meta name="author" content="">
 	  <%= stylesheet_link_tag    "application", :media => "all" %>
   	<%= javascript_include_tag "application" %>
+  	<%= javascript_include_tag "autocomplete-rails.js" %>
   	<%= csrf_meta_tags %>
   </head>
 
@@ -68,12 +69,11 @@
                 <% end %>
 							</li>
             </ul>
-            <form class="navbar-form pull-right" action = "/users/sign_in" method = "post">
-              <input id="user_email" name="user[email]" class="span2" type="text" placeholder="Email">
-              <input id="user_password" name="user[password]" class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Ok</button>
-              
-            </form>
+            <%= form_for "user", :url => user_session_path, :html => { :class => "navbar-form pull-right"} do |f| %>
+							<%= f.text_field :email, :id => "user_email", :class => "span2", :placeholder => "e-mail" %>
+							<%= f.password_field :password, :id => "user_password", :class => "span2", :placeholder => "senha" %>
+							<%= f.submit 'Ok', :class => "btn" %>
+						<% end %>
             <%#= render "devise/sessions/login" %>
           </div><!--/.nav-collapse -->
         </div>
@@ -85,68 +85,24 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
 
-				<% if flash[:notice]%>				
-				<div class="alert alert-block">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h6>				
-							<% flash.each do |name, msg| %>
-								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-							<% end %>
-						</h6>					
-				</div>
-							
-				<% end %>
-				<% if flash[:alert]%>
-					
-				<div class="alert alert-error">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h6>				
-							<% flash.each do |name, msg| %>
-								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-							<% end %>		
-						</h6>					
-				</div>
-							
+				<% flash.each do |name, msg| %>
+					<% if msg.is_a?(String) %>
+						<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+							<a class="close" data-dismiss="alert">&#215;</a>
+							<%= content_tag :div, msg, :id => "flash_#{name}" %>
+						</div>
+					<% end %>
 				<% end %>
 				
-				<% if flash[:success]%>
-					
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4>				
-						<p>
-							<% flash.each do |name, msg| %>
-								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-							<% end %>
-						</p>					
-						</h4>					
-				</div>
-							
-				<% end %>
-
-				<% if flash[:error]%>
-					
-				<div class="alert alert-error">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4>				
-						<p>
-							<% flash.each do |name, msg| %>
-								<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-							<% end %>
-						</p>					
-						</h4>					
-				</div>
-							
-				<% end %>
 				<%= yield %>
       </div>
       <hr>
 
-			<div id="footer">
-		    <div class="container-fluid">
-		      <p class="muted credit">Powered by <a href="http://martinbean.co.uk">LEDS</a>.</p>
-		    </div>
-		  </div>
+		  <div id=”rodape”>
+				<p class="text-center">
+					Todos Direitos Reservados – <strong>LEDS</strong></a> – 2013
+				</p>
+			</div>
 
     </div> <!-- /container -->
 

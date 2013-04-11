@@ -45,7 +45,7 @@ class MesasredondasController < ApplicationController
 
     respond_to do |format|
       if @mesasredonda.save
-        format.html { redirect_to @mesasredonda, notice: 'Mesasredonda was successfully created.' }
+        format.html { redirect_to @mesasredonda, notice: 'Mesa redonda cadastrada com sucesso.' }
         format.json { render json: @mesasredonda, status: :created, location: @mesasredonda }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class MesasredondasController < ApplicationController
 
     respond_to do |format|
       if @mesasredonda.update_attributes(params[:mesasredonda])
-        format.html { redirect_to @mesasredonda, notice: 'Mesasredonda was successfully updated.' }
+        format.html { redirect_to @mesasredonda, notice: 'Mesa redonda modificada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

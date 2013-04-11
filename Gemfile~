@@ -10,6 +10,7 @@ ruby '1.9.3'
 gem 'devise'
 gem 'cancan'
 gem 'heroku'
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3'

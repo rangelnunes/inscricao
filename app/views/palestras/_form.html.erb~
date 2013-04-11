@@ -1,4 +1,23 @@
 <%= form_for @palestra, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if @palestra.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @palestra.errors.count > 1 %>
+	      	<%= pluralize(@palestra.errors.count, "erro") %> impediram que esta palestra fosse cadastrada:
+	      <% else %>	
+		      <%= pluralize(@palestra.errors.count, "erro") %> impediu que esta palestra fosse cadastrada:
+	      <% end %>
+    	</h2>
+
+      <ul>
+      <% @palestra.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="control-group">
     <%= f.label 'Título', :class => 'control-label' %>
     <div class="controls">
@@ -20,9 +39,25 @@
   <div class="control-group">
     <%= f.label 'Palestrante', :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:palestrante, :palestrante_id, Palestrante.all, :id, :name, {:prompt => "Escolha um palestrante"}) %>
+      <%= collection_select(:palestra, :palestrante_id, Palestrante.all, :id, :name, {:prompt => "Escolha um palestrante"}) %>
+		  <!-- Button to trigger modal -->
+			<a href="#modalPalestrante" role="button" class="btn btn-success" data-toggle="modal">+</a>
     </div>
   </div>
+  
+	<!-- Modal -->
+	<div id="modalPalestrante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		  <h3 id="myModalLabel">Novo palestrante</h3>
+		</div>
+		<div class="modal-body">
+			<%= render :partial => "palestrantes/form" %>
+		</div>
+		<div class="modal-footer">
+		  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>
 
   <div class="form-actions">
     <%= f.submit 'Cadastrar', :class => 'btn btn-primary' %>

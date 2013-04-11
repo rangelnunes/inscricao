@@ -1,8 +1,21 @@
 Olá, <%= @user.name %>!<br />
+
 <h6><%= @user.email %></h6><br />
+
+<p>
+	Sua inscrição foi realizada com sucesso!
+</p>
+
+<p>
+	Para confirmar sua inscrição, envie um e-mail para xxx@gmail.com com o comprovante de transferência ou depósito, referetente ao pagamento da sua inscrição.
+</p>
+
 <% if @user.minicurso %>
-Minicurso escolhido: <%= @user.minicurso.title %><br />
+	Minicurso escolhido: <%= @user.minicurso.title %><br />
+<% else %>
+	Nenhum minicurso foi escolhido!	
 <% end %>
+
 <p>
 	Situação: 
 	<% if @user.status == false %>

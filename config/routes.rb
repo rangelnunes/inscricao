@@ -1,10 +1,13 @@
 SemanaAmbiente::Application.routes.draw do
 
-  devise_for :users, :controllers => {:sessions => "sessions" }
+  devise_for :users, :controllers => {:sessions => "sessions", :registrations => "registrations"}
 
-  resources :users
+  resources :users do
+  	get :autocomplete_user_name, :on => :collection
+  end
 
-
+	resources :user, :controller => "users"
+	
   resources :mesasredondas
 
 
@@ -13,12 +16,13 @@ SemanaAmbiente::Application.routes.draw do
 
   resources :palestras
 
-
   get "pages/index"
   
   get "pages/programacao"
 
   get "pages/status"
+  
+  get "pages/cadastro"
 
   resources :palestrantes
 

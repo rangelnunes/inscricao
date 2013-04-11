@@ -49,7 +49,7 @@ class PalestrantesController < ApplicationController
 
     respond_to do |format|
       if @palestrante.save
-        format.html { redirect_to @palestrante, :flash => { :success => "Palestrante was successfully"} }
+        format.html { redirect_to @palestrante, :flash => { :notice => "Palestrante was successfully"} }
         format.json { render json: @palestrante, status: :created, location: @palestrante }
       else
         format.html { render action: "new" }
@@ -78,6 +78,7 @@ class PalestrantesController < ApplicationController
   # DELETE /palestrantes/1
   # DELETE /palestrantes/1.json
   def destroy
+  	authorize! :destroy, @palestrante
     @palestrante = Palestrante.find(params[:id])
     @palestrante.destroy
 

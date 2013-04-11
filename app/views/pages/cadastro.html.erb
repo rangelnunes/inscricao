@@ -1,0 +1,23 @@
+Olá, <%= @user.name %>!<br />
+
+<h6><%= @user.email %></h6><br />
+
+<p>
+	Para confirmar sua inscrição, realize um depósito ou uma tranferência bancária no valor de <strong><%= @user.tipo == "Estudante" ? "R$ 10,00" : "R$ 20,00" %></strong> para a conta abaixo.
+</p>
+
+<p>
+	Em seguida, envie um e-mail para xxx@gmail.com com o comprovante de transferência ou depósito, referetente ao pagamento da sua inscrição.
+</p>
+
+<div class = "nota">
+	<p>
+		Banco do Brasil<br />
+		Conta corrente<br />
+		<strong>Agência: xxx-x</strong><br />
+		<strong>Conta: xxxxx-x</strong>	
+	</p>
+</div>
+
+
+

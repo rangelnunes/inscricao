@@ -8,7 +8,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   belongs_to :minicurso
-  attr_accessible :cpf, :institution, :name, :minicurso_id
+  attr_accessible :cpf, :institution, :name, :minicurso_id, :tipo
+  
+  # para ficar em portugues eu mudei no en.yml
+  validates_presence_of :name, :message => 'deve ser informado'  
+  validates_presence_of :cpf, :message => 'deve ser informado'
+  validates_presence_of :institution, :message => 'deve ser informada'
+  validates_presence_of :minicurso_id, :message => 'deve ser informado'
+  validates_presence_of :password_confirmation, :message => 'deve ser informada'
+	validates_presence_of :tipo, :message => 'deve ser informado'     
   
   has_and_belongs_to_many :roles
   
@@ -25,4 +33,10 @@ class User < ActiveRecord::Base
 		  self.role_ids = [3]
 		end
 	end
+	
+	def self.search(search)
+  	search_condition = "%" + search + "%"
+  	find(:all, :conditions => ['name LIKE ? OR cpf LIKE ?', search_condition, search_condition])
+	end
+	
 end

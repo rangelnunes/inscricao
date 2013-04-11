@@ -1,4 +1,23 @@
 <%= form_for @palestrante, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if @palestrante.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @palestrante.errors.count > 1 %>
+	      	<%= pluralize(@palestrante.errors.count, "erro") %> impediram que este palestrante fosse cadastrado:
+	      <% else %>	
+		      <%= pluralize(@palestrante.errors.count, "erro") %> impediu que este palestrante fosse cadastrado:
+	      <% end %>
+    	</h2>
+
+      <ul>
+      <% @palestrante.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="control-group">
     <%= f.label 'Nome completo', :class => 'control-label' %>
     <div class="controls">

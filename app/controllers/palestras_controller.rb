@@ -4,6 +4,7 @@ class PalestrasController < ApplicationController
   # GET /palestras
   # GET /palestras.json
   def index
+		#@palestrante = Palestrante.new
     @palestras = Palestra.all
 
     respond_to do |format|
@@ -26,6 +27,7 @@ class PalestrasController < ApplicationController
   # GET /palestras/new
   # GET /palestras/new.json
   def new
+    authorize! :new, @palestra
     @palestra = Palestra.new
 
     respond_to do |format|
@@ -36,6 +38,7 @@ class PalestrasController < ApplicationController
 
   # GET /palestras/1/edit
   def edit
+    authorize! :edit, @palestra
     @palestra = Palestra.find(params[:id])
   end
 
@@ -46,7 +49,7 @@ class PalestrasController < ApplicationController
 
     respond_to do |format|
       if @palestra.save
-        format.html { redirect_to @palestra, notice: 'Palestra was successfully created.' }
+        format.html { redirect_to @palestra, notice: 'Palestra cadastrada com sucesso.' }
         format.json { render json: @palestra, status: :created, location: @palestra }
       else
         format.html { render action: "new" }
@@ -62,7 +65,7 @@ class PalestrasController < ApplicationController
 
     respond_to do |format|
       if @palestra.update_attributes(params[:palestra])
-        format.html { redirect_to @palestra, notice: 'Palestra was successfully updated.' }
+        format.html { redirect_to @palestra, notice: 'Palestra modificada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

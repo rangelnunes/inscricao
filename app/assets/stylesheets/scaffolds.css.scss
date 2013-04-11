@@ -6,12 +6,29 @@ body {
   line-height: 18px;
 }
 
+#rodape {
+	position: absolute;
+	bottom: 0;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width: 100%;
+	background-color: #0FF;
+}
+
+.nota {
+	width:250px;
+	padding:10px;
+	border:5px solid green;
+	margin:10px; 
+}
+
 .imgpos {
 	position:relative;
 	left:50%;
 	top:50%;
 	margin-left:-300px;
-	margin-top:-50px;
+	margin-top:-20px;
 }
 
 .form-signin {
