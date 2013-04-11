@@ -62,5 +62,6 @@ module SemanaAmbiente
     config.assets.version = '1.0'
     
     config.assets.initialize_on_precompile = true
+		config.assets.precompile += %w( autocomplete-rails.js )
   end
 end
