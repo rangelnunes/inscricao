@@ -10,7 +10,7 @@ role1 = Role.create! :name => "Admin"
 role2 = Role.create! :name => "Moderator"
 role3 = Role.create! :name => "Member"
 
-user = User.create! :name => 'Rangel Nunes', :cpf => '99999999999', :institution => "IFPI", :minicurso_id => 0, :email => 'rangelnunes@gmail.com', :password => '12345678', :password_confirmation => '12345678'
+user = User.create! :name => 'Rangel Nunes', :cpf => '99999999999', :institution => "IFPI", :minicurso_id => 0, :email => 'rangelnunes@gmail.com', :password => '12345678', :password_confirmation => '12345678', :tipo => 'Administrador'
 
 user.role_ids = [1]
 
