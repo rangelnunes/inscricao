@@ -32,7 +32,8 @@
 		<div>
 			<%= f.select :tipo, options_for_select([["Selecione um tipo", ""], "Estudante", "Profissional"]) %>
 		</div>
-		<div><%= f.label 'Escolha um minicurso:' %><br />
+		<div>
+			<strong><%= f.label 'Escolha um minicurso:' %></strong>
 			<%for m in Minicurso.all%>
 				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
 				<%= m.title %> (n vagas restante(s))

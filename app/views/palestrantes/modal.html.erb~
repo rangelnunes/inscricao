@@ -1,4 +1,7 @@
-<%= form_for @palestrante, :html => { :class => 'form-horizontal', :remote => true } do |f| %>
+<div class="page-header">
+  <h3>Cadastro Modal de palestrante</h3>
+</div>
+<%= form_for @palestrante, :html => { :class => 'form-horizontal', :remote => } do |f| %>
 
   <% if @palestrante.errors.any? %>
     <div id="error_explanation">

@@ -22,7 +22,7 @@
 
 		<div>
 			<%= f.password_field :password, :placeholder => "Senha" %>
-			<span class="help-inline">(A senha deve ter no mínimo 8 caracteres)</span>
+			<span class="help-inline"><small>(A senha deve ter no mínimo 8 caracteres)</small></span>
 		</div>
 
 		<div>
@@ -30,9 +30,10 @@
 			<span class="help-inline">(Deve ser igual a senha)</span>
 		</div>
 		<div>
-			<%#= f.select :type, options_for_select([["Selecione um tipo", ""], "Estudante", "Profissional"]) %>
+			<%= f.select :tipo, options_for_select([["Selecione um tipo", ""], "Estudante", "Profissional"]) %>
 		</div>
-		<div><%= f.label 'Escolha um minicurso:' %><br />
+		<div>
+			<strong><%= f.label 'Escolha um minicurso:' %></strong>
 			<%for m in Minicurso.all%>
 				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
 				<%= m.title %> (n vagas restante(s))
