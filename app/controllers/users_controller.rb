@@ -2,9 +2,18 @@ class UsersController < ApplicationController
 
 	#before_filter :authenticate_user!
 	
+	def search
+		@users = User.search(params[:query])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
+	end
+  
   def index
     authorize! :read, @user
-    @users = User.all
+    @users = User.all(:order => "name")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,9 +45,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize! :edit, @user
     @user = User.find(params[:id])
   end
 
+  def confirm
+    authorize! :edit, @user
+    @user = User.find(params[:id])
+  end
+  
   # POST /users
   # POST /users.json
   def create
@@ -47,7 +62,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }        
+        #format.html { redirect_to root_path, notice: 'User was successfully created.' }
+				format.html { redirect_to users_url, notice: 'User was successfully created.' }                
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   belongs_to :minicurso
-  attr_accessible :cpf, :institution, :name, :minicurso_id, :tipo
+  attr_accessible :cpf, :institution, :name, :minicurso_id, :tipo, :status
   
   # para ficar em portugues eu mudei no en.yml
   validates_presence_of :name, :message => 'deve ser informado'  
@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   validates_presence_of :minicurso_id, :message => 'deve ser informado'
   validates_presence_of :password_confirmation, :message => 'deve ser informada'
 	validates_presence_of :tipo, :message => 'deve ser informado'     
+  
+  validates_numericality_of :cpf
+  validates_length_of :cpf, :is => 11
   
   has_and_belongs_to_many :roles
   

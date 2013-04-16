@@ -9,7 +9,9 @@
       <th>Data</th>
       <th>Horário</th>
       <th>Palestrante</th>
-      <th>Ações</th>
+      <% if can? :manage, @palestra %>
+	      <th>Ações</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -19,20 +21,23 @@
         <td><%= palestra.data.to_s %></td>
         <td><%= palestra.hora.to_s(:time) %></td>
         <td><%= palestra.palestrante.name %></td>
-        <td>
-          <%= link_to 'Alterar',
-                      edit_palestra_path(palestra), :class => 'btn btn-mini' %>
-          <%= link_to 'Remover',
-                      palestra_path(palestra),
-                      :method => :delete,
-                      :data => { :confirm => 'Deseja realmente excluir?' },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+	      <% if can? :manage, @palestra %>
+		      <td>
+		        <%= link_to 'Alterar',
+		                    edit_palestra_path(palestra), :class => 'btn btn-mini' %>
+		        <%= link_to 'Remover',
+		                    palestra_path(palestra),
+		                    :method => :delete,
+		                    :data => { :confirm => 'Deseja realmente excluir?' },
+		                    :class => 'btn btn-mini btn-danger' %>
+		      </td>
+				<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Nova palestra',
-            new_palestra_path,
-            :class => 'btn btn-primary' %>
+<% if can? :manage, @palestra %>
+	<%= link_to 'Nova palestra',
+		          new_palestra_path,
+		          :class => 'btn btn-primary' %>
+<% end %>

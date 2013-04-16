@@ -45,7 +45,6 @@ class PalestrasController < ApplicationController
   # POST /palestras
   # POST /palestras.json
   def create
-		    authorize! :create, @palestra
     @palestra = Palestra.new(params[:palestra])
 
     respond_to do |format|

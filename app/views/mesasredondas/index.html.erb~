@@ -7,23 +7,27 @@
     <tr>
       <th>Título</th>
       <th>Data</th>
-      <th>Ações</th>
+      <% if can? :manage, @mesasredonda %>
+      	<th>Ações</th>
+      <% end %>	
     </tr>
   </thead>
   <tbody>
     <% @mesasredondas.each do |mesasredonda| %>
       <tr>
-        <td><%= mesasredonda.title %></td>
+        <td><%= link_to mesasredonda.title, mesasredonda_path(mesasredonda) %></td>
         <td><%= mesasredonda.data.to_s %></td>
-        <td>
-          <%= link_to 'Alterar',
-                      edit_mesasredonda_path(mesasredonda), :class => 'btn btn-mini' %>
-          <%= link_to 'Remover',
-                      mesasredonda_path(mesasredonda),
-                      :method => :delete,
-                      :data => { :confirm => 'Deseja realmente remover?' },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+	      <% if can? :manage, @mesasredonda %>
+		      <td>
+		        <%= link_to 'Alterar',
+		                    edit_mesasredonda_path(mesasredonda), :class => 'btn btn-mini' %>
+		        <%= link_to 'Remover',
+		                    mesasredonda_path(mesasredonda),
+		                    :method => :delete,
+		                    :data => { :confirm => 'Deseja realmente remover?' },
+		                    :class => 'btn btn-mini btn-danger' %>
+		      </td>
+				<% end %>
       </tr>
     <% end %>
   </tbody>

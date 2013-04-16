@@ -45,6 +45,7 @@ class PalestrasController < ApplicationController
   # POST /palestras
   # POST /palestras.json
   def create
+    authorize! :create, @palestra
     @palestra = Palestra.new(params[:palestra])
 
     respond_to do |format|
@@ -61,6 +62,7 @@ class PalestrasController < ApplicationController
   # PUT /palestras/1
   # PUT /palestras/1.json
   def update
+		authorize! :update, @palestra
     @palestra = Palestra.find(params[:id])
 
     respond_to do |format|
@@ -77,6 +79,7 @@ class PalestrasController < ApplicationController
   # DELETE /palestras/1
   # DELETE /palestras/1.json
   def destroy
+		authorize! :destroy, @palestra
     @palestra = Palestra.find(params[:id])
     @palestra.destroy
 

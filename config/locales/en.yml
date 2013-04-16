@@ -31,4 +31,6 @@ en:
     format: "%{attribute} %{message}"
     messages:
       blank: "deve ser informado"
+      not_a_number: "deve ser numérico"
+      wrong_length: "deve possuir 11 dígitos"
 

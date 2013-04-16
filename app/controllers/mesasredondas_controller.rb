@@ -25,6 +25,7 @@ class MesasredondasController < ApplicationController
   # GET /mesasredondas/new
   # GET /mesasredondas/new.json
   def new
+    authorize! :new, @mesasredonda
     @mesasredonda = Mesasredonda.new
 
     respond_to do |format|
@@ -35,12 +36,14 @@ class MesasredondasController < ApplicationController
 
   # GET /mesasredondas/1/edit
   def edit
+    authorize! :edit, @mesasredonda
     @mesasredonda = Mesasredonda.find(params[:id])
   end
 
   # POST /mesasredondas
   # POST /mesasredondas.json
   def create
+    authorize! :create, @mesasredonda
     @mesasredonda = Mesasredonda.new(params[:mesasredonda])
 
     respond_to do |format|
@@ -57,6 +60,7 @@ class MesasredondasController < ApplicationController
   # PUT /mesasredondas/1
   # PUT /mesasredondas/1.json
   def update
+    authorize! :update, @mesasredonda
     @mesasredonda = Mesasredonda.find(params[:id])
 
     respond_to do |format|
@@ -73,6 +77,7 @@ class MesasredondasController < ApplicationController
   # DELETE /mesasredondas/1
   # DELETE /mesasredondas/1.json
   def destroy
+    authorize! :destroy, @mesasredonda
     @mesasredonda = Mesasredonda.find(params[:id])
     @mesasredonda.destroy
 

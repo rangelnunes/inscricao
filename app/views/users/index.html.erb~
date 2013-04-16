@@ -2,12 +2,14 @@
 <div class="page-header">
   <h3>#Inscritos</h3>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Nome</th>
       <th>CPF</th>
-      <th>Instituição</th>
+      <th>Situação</th>
+      <th>Data de inscrição</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -16,14 +18,17 @@
       <tr>
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.cpf %></td>
-        <td><%= user.institution %></td>
+        <td><%= user.status ? "Confirmado" : "Aguardando confirmação" %></td>
+        <td><%= user.created_at.to_formatted_s(:db) %></td>
         <td>
+          <%= link_to 'Confirmar',
+                      confirm_user_path(user), :class => 'btn btn-mini' %>
           <%= link_to 'Alterar',
                       edit_user_path(user), :class => 'btn btn-mini' %>
           <%= link_to 'Remover',
                       user_path(user),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm => 'Deseja realmente excluir?' },
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>

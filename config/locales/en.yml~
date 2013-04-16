@@ -27,4 +27,9 @@ en:
     models: 
       minicurso: "minicurso"
   hello: "Hello world"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: "deve ser informado"
+      not_a_number: "deve ser numérico"
 
