@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     #@users = User.all(:order => "name")
 		@users = User.scoped
 		@users = User.search(params[:query]) if params[:query].present?
+		@users = User.find(:all, :conditions => ['status = ?', true]) if params[:option].present?
 		
     respond_to do |format|
       format.html # index.html.erb

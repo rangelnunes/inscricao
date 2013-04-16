@@ -13,7 +13,6 @@
   </head>
 
   <body>
-
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -63,17 +62,21 @@
                   <% end %>
                 </ul>
               </li>
+							<li class="dropdown">
+             		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+		              <li><%= link_to 'Inscritos', users_path%></li>
+    		          <li>
+    		          	<%= link_to "Confirmados", { :controller=>"users", :action=>"index", :option => "confirmados" } %>
+    		          </li>
+    						</ul>
+  						</li>
               <li>
               	<% if user_signed_in? %>
                 	<%= link_to('Sair', destroy_user_session_path, :method => 'delete') %>
                 <% end %>
 							</li>
             </ul>
-            <form class="navbar-form pull-right" action = "/users/sign_in" method = "post">
-              <input id="user_email" name="user[email]" class="span2" type="text" placeholder="Email">
-              <input id="user_password" name="user[password]" class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Ok</button>            
-            </form>
             <%= form_for "user", :url => user_session_path, :html => { :class => "navbar-form pull-right"} do |f| %>
 							<%= f.text_field :email, :id => "user_email", :class => "span2", :placeholder => "e-mail" %>
 							<%= f.password_field :password, :id => "user_password", :class => "span2", :placeholder => "senha" %>
