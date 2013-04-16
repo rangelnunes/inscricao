@@ -15,17 +15,22 @@ class User < ActiveRecord::Base
   validates_presence_of :cpf, :message => 'deve ser informado'
   validates_presence_of :institution, :message => 'deve ser informada'
   validates_presence_of :minicurso_id, :message => 'deve ser informado'
-  validates_presence_of :password_confirmation, :message => 'deve ser informada'
+  validates_presence_of :password, :presence => true, :on => :create, :message => 'deve ser informada'
+  validates_presence_of :password_confirmation, :presence => true, :on => :create, :message => 'deve ser informada'
 	validates_presence_of :tipo, :message => 'deve ser informado'     
   
   validates_numericality_of :cpf
-  #validates_size_of :cpf, :equal_to => 11, :message => 'deve possuir 11 digitos'
+  validates_length_of :cpf, :is => 11
   
   has_and_belongs_to_many :roles
   
+  def confirm
+	  	self.status = true 		
+	end
+	
   def role?(role)
    return !!self.roles.find_by_name(role.to_s)
- end
+ 	end
 
 	before_create :setup_role
 

@@ -1,4 +1,11 @@
-<%= form_tag search_users_path, :method => 'get', :class => 'form-search' do %>
-  <%= text_field_tag :query, nil, :class => 'input-medium search-query' %>
+<%#= form_tag search_users_path, :method => 'get', :class => 'form-search' do %>
+  <%#= text_field_tag :query, nil, :class => 'input-medium search-query' %>
+  <%#= submit_tag "Procurar", :name => nil, :class => "btn" %>
+<%# end %>
+<%= form_tag users_path, :method => 'get', :class => 'form-search' do %>
+  <%= text_field_tag :query, "", 
+  		:placeholder => "busca por nome ou cpf...",
+  		:size => 30,
+  		:class => 'input-medium search-query' %>
   <%= submit_tag "Procurar", :name => nil, :class => "btn" %>
 <% end %>

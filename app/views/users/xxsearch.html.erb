@@ -19,7 +19,7 @@
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.cpf %></td>
         <td><%= user.status ? "Confirmado" : "Aguardando confirmação" %></td>
-        <td><%= user.created_at %><%#= user.created_at.to_formatted_s(:db) %></td>
+        <td><%= user.created_at.to_formatted_s(:db) %></td>
         <td>
           <%= link_to 'Confirmar',
                       confirm_user_path(user), :class => 'btn btn-mini' %>

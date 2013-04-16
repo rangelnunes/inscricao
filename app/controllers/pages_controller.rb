@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
 	before_filter :load_resources
-	
+	before_filter :authenticate_user!,:except => [:index, :programacao] 
+		
   def index
   end
   

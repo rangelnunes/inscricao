@@ -2,26 +2,22 @@ Olá, <%= @user.name %>!<br />
 
 <h6><%= @user.email %></h6><br />
 
+<div class = "nota">
+	<p>
+		Situação: 
+		<% if @user.status == false %>
+			Aguardando confirmação de inscrição!
+		<% else %>
+			Inscrição confirmada!
+		<% end %>
+	</p>
+</div>
+
 <p>
-	Sua inscrição foi realizada com sucesso!
+	Para confirmar sua inscrição, realize um depósito ou uma tranferência bancária no valor de <strong><%= @user.tipo == "Estudante" ? "R$ 10,00" : "R$ 20,00" %></strong> para a conta abaixo.
 </p>
 
 <p>
-	Para confirmar sua inscrição, envie um e-mail para xxx@gmail.com com o comprovante de transferência ou depósito, referetente ao pagamento da sua inscrição.
-</p>
-
-<% if @user.minicurso %>
-	Minicurso escolhido: <%= @user.minicurso.title %><br />
-<% else %>
-	Nenhum minicurso foi escolhido!	
-<% end %>
-
-<p>
-	Situação: 
-	<% if @user.status == false %>
-		Aguardando confirmação de inscrição!
-	<% else %>
-		Inscrição confirmada!
-	<% end %>
+	Em seguida, envie um e-mail para xxx@gmail.com com o comprovante de transferência ou depósito, referetente ao pagamento da sua inscrição.
 </p>
 
