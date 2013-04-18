@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
 
 	rescue_from CanCan::AccessDenied do |exception|
-		exception.default_message = "Voce nao tem autorizacao para realizar esta operacao"	  
+		exception.default_message = 'Voce nao tem autorizacao para realizar esta operacao'	  
 		flash[:error] = exception.message
 	  redirect_to root_path
 	end

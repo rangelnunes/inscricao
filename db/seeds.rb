@@ -15,3 +15,11 @@ user = User.create! :name => 'Rangel Nunes', :cpf => '99999999999', :institution
 user.role_ids = [1]
 
 user.save
+
+user1 = User.create! :name => 'Francisco Diniz', :cpf => '88888888888', :institution => "IFPI", :minicurso_id => 0, :email => 'profdiniz@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :tipo => 'Administrador'
+
+user1.role_ids = [1]
+
+user1.save
+
+

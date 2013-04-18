@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 	def after_sign_in_path_for(resource)
-    "http://www.google.com.br"
+    root_path
   end
 
 
 	rescue_from CanCan::AccessDenied do |exception|
-	  flash[:error] = exception.message
+		exception.default_message = 'Você nao tem autorizacao para realizar esta operacao'	  
+		flash[:error] = exception.message
 	  redirect_to root_path
 	end
 
