@@ -27,5 +27,8 @@ class Minicurso < ActiveRecord::Base
     end
   end
   
+  def self.inscritos(minicurso)
+  	find(:first, :conditions => ['id = ?', minicurso]).users
+	end
   
 end

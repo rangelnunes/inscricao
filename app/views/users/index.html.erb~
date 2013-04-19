@@ -2,7 +2,9 @@
 <div class="page-header">
   <h3>#Inscritos</h3>
 </div>
+
 <%= render :partial => 'search' %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -39,3 +41,16 @@
 <%= link_to "Nova inscrição",
             new_user_path,
             :class => 'btn btn-primary' %>
+<% unless @confirmados %>
+	<% unless @consultado %>
+		<%= link_to "Imprimir",
+					      users_path(:format => :pdf),
+					      :class => 'btn btn-primary' %>
+  <% else %>
+		<%= link_to "Voltar", users_path %>  	
+  <% end %>
+<% else %>
+	<%= link_to "Imprimir", 
+							{ :controller=>"users", :action=>"index", :option => "confirmados", :format => :pdf },
+							:class => 'btn btn-primary' %>
+<% end %>

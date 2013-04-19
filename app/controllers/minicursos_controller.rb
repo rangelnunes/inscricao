@@ -5,10 +5,12 @@ class MinicursosController < ApplicationController
   # GET /minicursos.json
   def index
     @minicursos = Minicurso.all
+		#@minicursos = Minicurso.scoped
+		#@users = Minicurso.inscritos(params[:id]) if params[:id].present?
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @minicursos }
+			  format.html # index.html.erb
+			  format.json { render json: @minicursos }
     end
   end
 

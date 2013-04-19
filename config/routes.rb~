@@ -10,6 +10,14 @@ SemanaAmbiente::Application.routes.draw do
   	collection do
   		get 'confirm'
   	end
+
+  	member do
+  		get 'search'
+  	end
+
+  	collection do
+  		get 'search'
+  	end
   end
 
 	#resources :user, :controller => "user"
@@ -30,6 +38,8 @@ SemanaAmbiente::Application.routes.draw do
   
   get "pages/cadastro"
 
+  post "minicursos/inscritos"
+  
   resources :palestrantes
 
 

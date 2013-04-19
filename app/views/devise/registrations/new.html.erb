@@ -35,9 +35,11 @@
 		<div>
 			<strong><%= f.label 'Escolha um minicurso:' %></strong>
 			<%for m in Minicurso.all%>
-				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
-				<%= m.title %> (n vagas restante(s))
-				</p>
+				<% if m.users.count < 40 %>
+					<p><%=radio_button_tag "user[minicurso_id]", m.id %>
+					<%= m.title %> (<%= 40 - m.users.count %> vaga(s) restante(s))
+					</p>
+				<% end %>
 			<%end%>
 				<p><%=radio_button_tag "user[minicurso_id]", 0, :checked => true %> Nenhum
 		</div>

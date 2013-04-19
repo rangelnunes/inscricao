@@ -7,7 +7,7 @@
 		</div>
 
 		<div>
-			<%= f.text_field :cpf, :placeholder => "CPF" %>
+			<%= f.text_field :cpf, :placeholder => "CPF", :size => 11 %>
 			<span class="help-inline">(Somente números. Ex.: 99999999999)</span>
 		</div>
 		  
@@ -36,7 +36,7 @@
 			<strong><%= f.label 'Escolha um minicurso:' %></strong>
 			<%for m in Minicurso.all%>
 				<p><%=radio_button_tag "user[minicurso_id]", m.id %>
-				<%= m.title %> (n vagas restante(s))
+				<%= m.title %> (<%= 40 - m.users.count %> vaga(s) restante(s))
 				</p>
 			<%end%>
 				<p><%=radio_button_tag "user[minicurso_id]", 0, :checked => true %> Nenhum

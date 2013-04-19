@@ -8,14 +8,17 @@
       <th>Título</th>
       <th>Período</th>
       <th>Horário</tr>
-      <th>Vagas</th>
-      <th>Instrutor</th>
       <% if can? :manage, @minicurso %>
 	      <th>Ações</th>
 	    <% end %>  
     </tr>
   </thead>
   <tbody>
+  	<% if @users.present? %>
+  		<% @users.each do |u| %>
+  			<%= u.name %><br />
+  		<% end %>
+  	<% end %>
     <% @minicursos.each do |minicurso| %>
       <tr>
         <td><%= link_to minicurso.title, minicurso_path(minicurso) %></td>

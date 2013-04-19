@@ -68,8 +68,15 @@
 		              <ul class="dropdown-menu">
 				            <li><%= link_to 'Inscritos', users_path%></li>
 		  		          <li>
-		  		          	<%= link_to "Confirmados", { :controller=>"users", :action=>"index", :option => "confirmados" } %>
+		  		          	<%= link_to "Confirmados", 
+		  		          							{ :controller=>"users", :action=>"index", :option => "confirmados" } %>
 		  		          </li>
+		  		          <%for m in Minicurso.all%>
+						          <li>
+		    				      	<%= link_to "Minicurso: #{m.title}", 
+		    				      							{ :controller=>"minicursos", :action=>"index", :id => m.id } %>
+		          				</li>
+										<% end %>
 		  						</ul>
 								</li>
 							<% end %>

@@ -14,12 +14,46 @@ class UsersController < ApplicationController
   def index
     authorize! :read, @user
     #@users = User.all(:order => "name")
-		@users = User.scoped
-		@users = User.search(params[:query]) if params[:query].present?
-		@users = User.find(:all, :conditions => ['status = ?', true]) if params[:option].present?
+		#@users = User.scoped
+		#@users = User.search(params[:query]) if params[:query].present?
+		#@users = User.find(:all, :conditions => ['status = ?', true]) if params[:option].present?
+		@users = User.scoped(:order => "name ASC", :conditions => ['tipo <> ?', 'Administrador'])
+		if params[:query].present?
+			@users = User.search(params[:query]) 
+			@consultado = true
+		end
+		if params[:option].present?
+			@users = User.find(:all, :order => "name ASC", 
+												 :conditions => ['status = ? and tipo <> ?', true, 'Administrador']) 
+			@confirmados = true
+		end
 		
     respond_to do |format|
       format.html # index.html.erb
+			format.pdf do		    
+		    pdf = Prawn::Document.new(:page_size => "A4")
+		    pdf.text "Inscritos", :style => :bold, :size => 14,:spacing => 1.5, :align => :center
+ 		    pdf.text "Total de inscritos: #{@users.count}", :size => 10,:spacing => 1.5, :align => :right
+				#da espaco entre o titulo e a tabela
+				pdf.move_down(20)
+				headers = ["Nome","e-mail", "Assinatura"]
+				users = @users.map do |i|
+					[
+						i.name.titleize,
+						i.email,
+						" "
+					]
+				end
+
+				pdf.table ([headers] + users), :row_colors => ["FFFFFF", "DDDDDD"],
+				:header => true, :column_widths => {0 => 200, 1 => 180, 2 => 120} do
+					style row(0), :borders => [:bottom], :background_color => "DDDDDD", :font_style => :bold
+				end
+				
+		    send_data pdf.render, type: "application/pdf", disposition: "inline"
+		    # send_data renders the pdf on the client side rather than saving it on the server filesystem.
+		    # Inline disposition renders it in the browser rather than making it a file download.
+	    end
       format.json { render json: @users }
     end
   end

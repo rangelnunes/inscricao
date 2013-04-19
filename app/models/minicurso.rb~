@@ -23,9 +23,12 @@ class Minicurso < ActiveRecord::Base
 
   def validate_end_date_before_start_date
     if date_fim && date_ini
-      errors.add(:date_fim, "Put error text here") if date_fim < date_ini
+      errors.add(:date_fim, "deve ser maior que a data de inicio") if date_fim < date_ini
     end
   end
   
+  def self.inscritos(minicurso)
+  	find(:all, :conditions => ['id = ?', minicurso])
+	end
   
 end

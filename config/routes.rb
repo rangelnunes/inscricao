@@ -37,7 +37,7 @@ SemanaAmbiente::Application.routes.draw do
   get "pages/status"
   
   get "pages/cadastro"
-
+  
   resources :palestrantes
 
 
